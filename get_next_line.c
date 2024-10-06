@@ -6,7 +6,7 @@
 /*   By: erikcousillas <erikcousillas@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:35:13 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/06 12:04:35 by erikcousill      ###   ########.fr       */
+/*   Updated: 2024/10/06 21:14:45 by erikcousill      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,30 @@
 char	*get_next_line(int fd)
 {
 	char		*buffer;
-	static int	fdd;
-	int			contador;
+	static char *remainder;
+	int			bytes_read;
+	char		*line;
 
-	read(fd, buffer, BUFFER_SIZE);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+
+	bytes_read = 1;
+	while (!has_newline(remainder) && bytes_read != 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[bytes_read] = '\0';
+		remainder = join_strings(remainder, buffer);
+	}
+	free (buffer);
+	line = extract_line(remainder);
+	remainder = update_remainder(remainder);
+	return (line);
 }
