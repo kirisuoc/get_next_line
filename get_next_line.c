@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erikcousillas <erikcousillas@student.42    +#+  +:+       +#+        */
+/*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:35:13 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/06 21:14:45 by erikcousill      ###   ########.fr       */
+/*   Updated: 2024/10/07 12:05:19 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
