@@ -6,7 +6,7 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:35:13 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/07 12:05:19 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:17:36 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,26 @@ char	*get_next_line(int fd)
 			free(buffer);
 			return (NULL);
 		}
+		if (bytes_read == 0)
+		{
+			free(buffer);
+			if (remainder && *remainder)
+			{
+				line = extract_line(remainder);
+				remainder = update_remainder(remainder);
+				return (line);
+			}
+			free (remainder);
+			remainder = NULL;
+			return (NULL);
+		}
 		buffer[bytes_read] = '\0';
 		remainder = join_strings(remainder, buffer);
+		if (!remainder)
+		{
+			free(buffer);
+			return (NULL);
+		}
 	}
 	free (buffer);
 	line = extract_line(remainder);
