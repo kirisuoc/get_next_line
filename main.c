@@ -6,7 +6,7 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 11:29:04 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/07 16:21:48 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:06:37 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int	main(void)
     // Cerrar el archivo
     close(fd);
 
-	/*while ((line = get_next_line(0))) {
-        free(line);
-    }*/
 
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:35:16 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/07 16:18:42 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:56:21 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ size_t	ft_strlen(const char *s)
 	return (length);
 }
 
-
-int		has_newline(char *remainder)
+int	has_newline(char *remainder)
 {
 	while (remainder && *remainder)
 	{
@@ -69,7 +68,7 @@ char	*join_strings(char *remainder, char *new_part)
 }
 
 // Extrae la nueva línea hasta que se encuentra el \n
-char 	*extract_line(char *remainder)
+char	*extract_line(char *remainder)
 {
 	char	*string;
 	int		i;
@@ -90,10 +89,7 @@ char 	*extract_line(char *remainder)
 		j++;
 	}
 	if (remainder[i] == '\n')
-	{
-		string[i] = '\n';
-		i++;
-	}
+		string[i++] = '\n';
 	string[i] = '\0';
 	return (string);
 }
@@ -116,48 +112,21 @@ char	*update_remainder(char *remainder)
 		free(remainder);
 		return (NULL);
 	}
-	new_remainder = malloc((ft_strlen(remainder) - newline_pos + 1) * sizeof(char));
+	new_remainder = malloc((ft_strlen(remainder) - newline_pos + 1)
+			* sizeof(char));
 	if (!new_remainder)
+	{
+		free(remainder);
 		return (NULL);
+	}
 	newline_pos++;
 	i = 0;
 	while (remainder[newline_pos + i] != '\0')
 	{
-		new_remainder[i] =	remainder[newline_pos + i];
+		new_remainder[i] = remainder[newline_pos + i];
 		i++;
 	}
-	new_remainder[ft_strlen(remainder) - newline_pos] = '\0';
+	new_remainder[i] = '\0';
 	free(remainder);
 	return (new_remainder);
 }
-
-
-
-/*void	join_strings(char *remainder, char *newpart)
-{
-	size_t	remainder_len;
-	size_t	i;
-	char	*pos_newline_newpart;
-
-	remainder_len = ft_strlen(remainder);
-	pos_newline_newpart = ft_strchr((const char *)newpart, '\n');
-	i = 0;
-	if (*pos_newline_newpart != NULL)
-	{
-		while (*newpart != *pos_newline_newpart)
-		{
-			remainder[remainder_len + i] = newpart[i];
-			i++;
-		}
-	}
-	else
-	{
-		while (newpart[i] != '\0')
-		{
-			remainder[remainder_len + i] = newpart[i];
-			i++;
-		}
-	}
-	remainder[remainder_len + i] = '\0';
-	return (remainder);
-}*/
