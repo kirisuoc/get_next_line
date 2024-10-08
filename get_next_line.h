@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erikcousillas <erikcousillas@student.42    +#+  +:+       +#+        */
+/*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:35:21 by erikcousill       #+#    #+#             */
-/*   Updated: 2024/10/06 20:29:17 by erikcousill      ###   ########.fr       */
+/*   Updated: 2024/10/07 17:09:10 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
 
 char	*get_next_line(int fd);
+
+size_t	ft_strlen(const char *s);
+int		has_newline(char *remainder);
+char	*join_strings(char *remainder, char *newpart);
+char	*extract_line(char *remainder);
+char	*update_remainder(char *remainder);
 
 #endif
