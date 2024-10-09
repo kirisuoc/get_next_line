@@ -5,3 +5,5 @@ get_next_line_bonus.h.gch
 *.txt
 test.c
 test_bonus.c
+test2_bonus.c
+
