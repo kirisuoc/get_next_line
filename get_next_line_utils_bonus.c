@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erikcousillas <erikcousillas@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:00:01 by ecousill          #+#    #+#             */
-/*   Updated: 2024/10/09 18:03:57 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:21:30 by erikcousill      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*free_memory(char *string)
 	free(string);
 	return (NULL);
 }
-
 
 char	*join_strings(char *remainder, char *new_part)
 {
