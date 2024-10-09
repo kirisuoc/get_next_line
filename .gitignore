@@ -1,7 +1,6 @@
 *.pdf
 a.out
 get_next_line.h.gch
-get_next_line.h.gch
 main.c
 main_bonus.c
 *.txt
