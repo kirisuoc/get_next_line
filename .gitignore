@@ -2,6 +2,6 @@
 a.out
 get_next_line.h.gch
 get_next_line_bonus.h.gch
-main.c
-main_bonus.c
 *.txt
+test.c
+test_bonus.c
