@@ -6,13 +6,13 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:00:01 by ecousill          #+#    #+#             */
-/*   Updated: 2024/10/09 11:50:08 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:03:57 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *string)
+static size_t	ft_strlen(const char *string)
 {
 	size_t	length;
 
@@ -22,42 +22,12 @@ size_t	ft_strlen(const char *string)
 	return (length);
 }
 
-int	has_newline(char *string)
+char	*free_memory(char *string)
 {
-	while (string && *string != '\0')
-	{
-		if (*string == '\n')
-			return (1);
-		string++;
-	}
-	return (0);
+	free(string);
+	return (NULL);
 }
 
-char	*extract_line(char *remainder)
-{
-	char	*string;
-	int		i;
-	int		j;
-
-	if (!remainder)
-		return (NULL);
-	i = 0;
-	while (remainder[i] && remainder[i] != '\n')
-		i++;
-	string = malloc((i + (remainder[i] == '\n') + 1) * sizeof(char));
-	if (!string)
-		return (NULL);
-	j = 0;
-	while (j < i)
-	{
-		string[j] = remainder[j];
-		j++;
-	}
-	if (remainder[i] == '\n')
-		string[i++] = '\n';
-	string[i] = '\0';
-	return (string);
-}
 
 char	*join_strings(char *remainder, char *new_part)
 {
@@ -70,7 +40,7 @@ char	*join_strings(char *remainder, char *new_part)
 	newpart_len = ft_strlen(new_part);
 	new_str = malloc((remainder_len + newpart_len + 1) * sizeof(char));
 	if (!new_str)
-		return (NULL);
+		return (free_memory(remainder));
 	i = 0;
 	while (i < remainder_len)
 	{
@@ -88,31 +58,51 @@ char	*join_strings(char *remainder, char *new_part)
 	return (new_str);
 }
 
+char	*extract_line(char *remainder)
+{
+	char	*string;
+	int		i;
+	int		j;
+
+	if (!remainder)
+		return (free_memory(remainder));
+	i = 0;
+	while (remainder[i] && remainder[i] != '\n')
+		i++;
+	string = malloc((i + (remainder[i] == '\n') + 1) * sizeof(char));
+	if (!string)
+		return (free_memory(remainder));
+	j = 0;
+	while (j < i)
+	{
+		string[j] = remainder[j];
+		j++;
+	}
+	if (remainder[i] == '\n')
+		string[i++] = '\n';
+	string[i] = '\0';
+	return (string);
+}
+
 char	*update_remainder(char *remainder)
 {
-	size_t	newline_pos;
+	size_t	nl_pos;
 	size_t	i;
 	char	*new_remainder;
 
-	if (!remainder)
-		return (NULL);
-	newline_pos = 0;
-	while (remainder[newline_pos] && remainder[newline_pos] != '\n')
-		newline_pos++;
-	if (remainder[newline_pos] == '\0')
-		return (NULL);
-	new_remainder = malloc((ft_strlen(remainder) - newline_pos + 1)
-			* sizeof(char));
+	nl_pos = 0;
+	while (remainder[nl_pos] && remainder[nl_pos] != '\n')
+		nl_pos++;
+	if (remainder[nl_pos] == '\0')
+		return (free_memory(remainder));
+	new_remainder = malloc((ft_strlen(remainder) - nl_pos + 1) * sizeof(char));
 	if (!new_remainder)
-	{
-		free(remainder);
-		return (NULL);
-	}
-	newline_pos++;
+		return (free_memory(remainder));
+	nl_pos++;
 	i = 0;
-	while (remainder[newline_pos + i] != '\0')
+	while (remainder[nl_pos + i])
 	{
-		new_remainder[i] = remainder[newline_pos + i];
+		new_remainder[i] = remainder[nl_pos + i];
 		i++;
 	}
 	new_remainder[i] = '\0';
