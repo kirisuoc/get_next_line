@@ -6,7 +6,7 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 08:59:41 by ecousill          #+#    #+#             */
-/*   Updated: 2024/10/09 11:05:33 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:29:30 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 			if (remainder[fd])
 			{
 				line = remainder[fd];
-				remainder[fd] = update_remainder(remainder[fd]);	// Necesaria?? o ponemos return (remainder[fd])
+				remainder[fd] = update_remainder(remainder[fd]); // Necesaria?? o ponemos return (remainder[fd])
 				return (line);
 			}
 			free(remainder[fd]);

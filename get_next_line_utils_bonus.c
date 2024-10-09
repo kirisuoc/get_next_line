@@ -6,7 +6,7 @@
 /*   By: ecousill <ecousill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:00:01 by ecousill          #+#    #+#             */
-/*   Updated: 2024/10/09 11:06:57 by ecousill         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:50:08 by ecousill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *string)
 
 int	has_newline(char *string)
 {
-	while (string && *string)
+	while (string && *string != '\0')
 	{
 		if (*string == '\n')
 			return (1);
